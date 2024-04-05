@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
+/* styles.css */
+html {
+    font-size: 20px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #f5f6f8;
+}
+
+.logo {
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.talk {
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.description {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.title {
+    color: #212529;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.sub-title {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.price {
+    color: #ff0000;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.main {
+    width: 33.3333%; /* 데스크톱에서는 전체 화면의 1/3을 차지하도록 설정 */
+    height: 100%;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 모바일 화면에 대한 스타일 */
+@media screen and (max-width: 600px) {
+    .main {
+        width: 100%; /* 모바일 화면에서는 전체 화면을 꽉 채우도록 설정 */
+    }
+}
