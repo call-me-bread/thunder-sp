@@ -1,5 +1,4 @@
 import './style.css'
-import channelTalk from "../public/ch_loader_white-1552365640918.gif"
 import logo from "../public/logo.png"
 import {ChatButton} from "./channel-button.jsx";
 
