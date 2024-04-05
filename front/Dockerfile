@@ -1,4 +1,4 @@
-# Use the official Node.js runtime as the base image for the build stage
+# Use the official Node.js runtime as the base image
 FROM node:18 as build
 
 # Set the working directory in the container
@@ -19,14 +19,8 @@ RUN npm run build
 # Use Nginx as the production server
 FROM nginx:alpine
 
-# Set the working directory in the Nginx container
-WORKDIR /usr/share/nginx/html
-
-# Remove default Nginx static files
-RUN rm -rf ./*
-
-# Copy the built React app from the build stage to Nginx's web server directory
-COPY --from=build /app/build .
+# Copy the built React app to Nginx's web server directory
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # Expose port 80 for the Nginx server
 EXPOSE 80
