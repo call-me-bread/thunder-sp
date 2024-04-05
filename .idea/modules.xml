@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/thunder-sp.iml" filepath="$USER_HOME$/thunder-sp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../thunder-sp.iml" filepath="$PROJECT_DIR$/../thunder-sp.iml" />
     </modules>
   </component>
 </project>
