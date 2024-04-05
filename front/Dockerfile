@@ -1,8 +1,8 @@
-# Use the official Node.js runtime as the base image
+# Use the official Node.js runtime as the base image for the build stage
 FROM node:18 as build
 
 # Set the working directory in the container
-WORKDIR /front
+WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
@@ -19,19 +19,14 @@ RUN npm run build
 # Use Nginx as the production server
 FROM nginx:alpine
 
-# SSL 인증서 및 키 파일을 복사합니다.
-#COPY your_domain.crt /etc/nginx/ssl/your_domain.crt
-#COPY your_domain.key /etc/nginx/ssl/your_domain.key
+# Set the working directory in the Nginx container
+WORKDIR /usr/share/nginx/html
 
-# Nginx 설정 파일을 복사합니다.
-COPY nginx.conf /etc/nginx/nginx.conf
+# Remove default Nginx static files
+RUN rm -rf ./*
 
-## Nginx 서버 실행 시 SSL 인증서와 키 파일을 적용합니다.
-#RUN sed -i '/^http {/a \    server_tokens off;\n    include /etc/nginx/sites-enabled/*;' /etc/nginx/nginx.conf
-#RUN sed -i '/^http {/a \    ssl_certificate /etc/nginx/ssl/your_domain.crt;\n    ssl_certificate_key /etc/nginx/ssl/your_domain.key;' /etc/nginx/nginx.conf
-
-# Copy the built React app to Nginx's web server directory
-COPY --from=build /front/dist /usr/share/nginx/html
+# Copy the built React app from the build stage to Nginx's web server directory
+COPY --from=build /app/build .
 
 # Expose port 80 for the Nginx server
 EXPOSE 80
